@@ -1,0 +1,34 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "al",
+            "request": "launch",            
+            // ---- Docker---
+            // "name": "Your own server",
+            // "server": "http://CRF2018CU9NAPRD", 
+            // "serverInstance": "NAV",                   
+            // "port"  : 7049,
+            // "authentication":"UserPassword",   
+           // ---------------TEST ---------------         
+           "name": "Your own server",
+           "server": "http://10.2.16.181",                    
+           "serverInstance": "CRE-NAV-TEST",
+           "port"  : 7049, 
+           "authentication": "Windows",
+           // ---------------DEV ---------------         
+            // "name": "Your own server",
+            // "server": "http://10.2.16.181",                    
+            // "serverInstance": "CRE-NAV-DEV",
+            // "port"  : 8049, 
+            // "authentication": "Windows",
+           //--------------------------------------         
+            //"tenant": "default",
+            //"startupObjectId": 22,
+           "schemaUpdateMode": "Synchronize"
+            //"schemaUpdateMode": "Recreate"
+            //"startupObjectType": "Page",
+            //"breakOnError": true
+        }
+    ]
+}

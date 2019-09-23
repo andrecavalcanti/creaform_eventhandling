@@ -1,0 +1,27 @@
+{
+  "id": "6aa2f936-0fde-4666-88fb-6f1177ad3059",
+  "name": "DXC Event Handling",
+  "publisher": "DXC",
+  "brief": "",
+  "description": "AMC-128 Update 09-11-19",
+  "version": "1.0.0.0",
+  "compatibilityId": "1.0.0.0",
+  "privacyStatement": "",
+  "EULA": "",
+  "help": "",
+  "url": "",
+  "logo": "",
+  "capabilities": [],
+  "dependencies": [],
+  "screenshots": [],
+  "platform": "11.0.0.0",
+  "application": "11.0.0.0",
+  "idRange": {
+    "from": 50000,
+    "to": 50149
+  },
+  "target": "Internal",
+  "showMyCode": true,
+  "breakonerror" : true,
+  "runtime": "1.0"
+}
