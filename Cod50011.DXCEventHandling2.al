@@ -34,6 +34,42 @@ codeunit 50011 "DXCEventHandling3"
           ERROR(Text002,ProdOrderLine.FIELDCAPTION("Finished Quantity"),ProdOrder.FIELDCAPTION(Quantity),ProdOrder."No."); 
     end;
     // << AMC-125
+    // >> AMC-131
+    [EventSubscriber(ObjectType::Page, 7365, 'OnAfterGetCurrRecordEvent', '', false, false)]
+    local procedure Handle11(var Rec : Record "Warehouse Journal Line");
+    var
+        WhseJnlLine : Record "Warehouse Journal Line";
+    begin
+        
+        WhseJnlLine := Rec;
+        WhseJnlLine.SETRECFILTER;       
+
+        WhseJnlLine.SETRANGE("Item No.",'');
+        WhseJnlLine.SETFILTER("Registering Date",'<>%1',TODAY);
+        if WhseJnlLine.FINDFIRST then
+          Rec.DELETE;
+        
+    end;
+    // << AMC-131
+
+    // << AMC-131
+    [EventSubscriber(ObjectType::Page, 7324, 'OnAfterGetCurrRecordEvent', '', false, false)]
+    local procedure Handle12(var Rec : Record "Warehouse Journal Line");
+    var
+        WhseJnlLine : Record "Warehouse Journal Line";
+    begin
+        
+        WhseJnlLine := Rec;
+        WhseJnlLine.SETRECFILTER;        
+
+        WhseJnlLine.SETRANGE("Item No.",'');
+        WhseJnlLine.SETFILTER("Registering Date",'<>%1',TODAY);
+        if WhseJnlLine.FINDFIRST then
+          Rec.DELETE;
+       
+    end;
+    // << AMC-131
+
     var
         Text001 : Label '%1 is %2 and %3 is %4 on item %5';
         Text002 : Label '%1 is greater than %2 on Prod. Order %3';
