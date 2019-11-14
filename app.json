@@ -12,7 +12,12 @@
   "url": "",
   "logo": "",
   "capabilities": [],
-  "dependencies": [],
+  "dependencies": [{
+    "appId": "b97e4daf-810e-44ee-a117-7a99f3cd11bd",
+    "name": "DXC Assembly To Stock",
+    "publisher": "DXC",   
+    "version": "1.0.0.0"
+  }],
   "screenshots": [],
   "platform": "11.0.0.0",
   "application": "11.0.0.0",

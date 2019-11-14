@@ -36,7 +36,7 @@ codeunit 50011 "DXCEventHandling3"
     // << AMC-125
     // >> AMC-131
     [EventSubscriber(ObjectType::Page, 7365, 'OnAfterGetCurrRecordEvent', '', false, false)]
-    local procedure Handle11(var Rec : Record "Warehouse Journal Line");
+    local procedure HandleOnAfterGetCurrRecordWhseReclassJournal(var Rec : Record "Warehouse Journal Line");
     var
         WhseJnlLine : Record "Warehouse Journal Line";
     begin
@@ -54,7 +54,7 @@ codeunit 50011 "DXCEventHandling3"
 
     // << AMC-131
     [EventSubscriber(ObjectType::Page, 7324, 'OnAfterGetCurrRecordEvent', '', false, false)]
-    local procedure Handle12(var Rec : Record "Warehouse Journal Line");
+    local procedure HandlefterGetCurrRecordOnWhseItemJournal(var Rec : Record "Warehouse Journal Line");
     var
         WhseJnlLine : Record "Warehouse Journal Line";
     begin
@@ -69,8 +69,20 @@ codeunit 50011 "DXCEventHandling3"
        
     end;
     // << AMC-131
-
+    // << AMC-129
+    [EventSubscriber(ObjectType::Table, 37, 'OnAfterValidateEvent', 'Qty. to Assemble to Stock', false, false)]
+    local procedure HandleAfterValidateQtyToAssembleToStock(var Rec : Record "Sales Line"; var xRec : Record "Sales Line";CurrFieldNo : Integer)
+    begin
+      if (rec."Document Type" <> rec."Document Type"::Order) then
+        exit;
+      if (Rec.Type <> Rec.Type::Item) then
+        exit;
+      if (rec."Qty. to Assemble to Stock" > rec.Quantity) then
+        Error(Text003);
+    end;
+    // << AMC-129
     var
         Text001 : Label '%1 is %2 and %3 is %4 on item %5';
         Text002 : Label '%1 is greater than %2 on Prod. Order %3';
+        Text003 : Label 'Qty. to Assemble to Stock cannot be greater than Quantity';
 }
