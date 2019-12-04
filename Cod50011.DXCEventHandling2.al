@@ -81,6 +81,25 @@ codeunit 50011 "DXCEventHandling3"
         Error(Text003);
     end;
     // << AMC-129
+    // >> AMC-121
+    [EventSubscriber(ObjectType::Codeunit, 22, 'OnBeforeInsertItemLedgEntry', '', false, false)]
+    local procedure HandleBeforeInsertItemLedgEntryOnItemJnlPostLine(var ItemLedgerEntry : Record "Item Ledger Entry";ItemJournalLine : Record "Item Journal Line");
+    var
+        SalesShipHeader : Record "Sales Shipment Header";
+        PurchReceiptHeader : Record "Purch. Rcpt. Header";
+    begin
+
+        if (ItemLedgerEntry."Entry Type" = ItemLedgerEntry."Entry Type"::Sale) and (ItemLedgerEntry."Document Type" = ItemLedgerEntry."Document Type"::"Sales Shipment") then begin
+          if SalesShipHeader.GET(ItemLedgerEntry."Document No.") then
+            ItemLedgerEntry."Source Document No." := SalesShipHeader."Order No.";
+        end;
+
+        if (ItemLedgerEntry."Entry Type" = ItemLedgerEntry."Entry Type"::Purchase) and (ItemLedgerEntry."Document Type" = ItemLedgerEntry."Document Type"::"Purchase Receipt") then begin
+          if PurchReceiptHeader.GET(ItemLedgerEntry."Document No.") then
+            ItemLedgerEntry."Source Document No." := PurchReceiptHeader."Order No.";
+        end;
+    end;
+    // << AMC-121
     var
         Text001 : Label '%1 is %2 and %3 is %4 on item %5';
         Text002 : Label '%1 is greater than %2 on Prod. Order %3';

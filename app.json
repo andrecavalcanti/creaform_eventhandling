@@ -3,7 +3,7 @@
   "name": "DXC Event Handling",
   "publisher": "DXC",
   "brief": "",
-  "description": "AMC-128, AMC-131 , AMC-129 Update 11-12-19",
+  "description": "AMC-128, AMC-131 , AMC-129, AMC-121 Update 12-04-19",
   "version": "1.0.0.0",
   "compatibilityId": "1.0.0.0",
   "privacyStatement": "",
@@ -15,6 +15,12 @@
   "dependencies": [{
     "appId": "b97e4daf-810e-44ee-a117-7a99f3cd11bd",
     "name": "DXC Assembly To Stock",
+    "publisher": "DXC",   
+    "version": "1.0.0.0"
+  },
+  {
+    "appId": "7600e73c-dba3-4141-9fc3-a1b9d3b6fe71",
+    "name": "DXC Add Source Document to Item Ledger Entry",
     "publisher": "DXC",   
     "version": "1.0.0.0"
   }],
