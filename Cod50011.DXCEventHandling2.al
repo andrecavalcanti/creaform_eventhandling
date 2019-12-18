@@ -40,7 +40,7 @@ codeunit 50011 "DXCEventHandling3"
     var
         WhseJnlLine : Record "Warehouse Journal Line";
     begin
-        
+        EXIT;
         WhseJnlLine := Rec;
         WhseJnlLine.SETRECFILTER;       
 
@@ -100,6 +100,14 @@ codeunit 50011 "DXCEventHandling3"
         end;
     end;
     // << AMC-121
+
+     // >> AMC-135
+    [EventSubscriber(ObjectType::Table, 5406, 'OnBeforeInsertEvent', '', false, false)]
+    local procedure HandleBeforeInsertOnProdOrderLine(var Rec : Record "Prod. Order Line";RunTrigger : Boolean);            
+    begin
+        Rec."Planning Flexibility" := Rec."Planning Flexibility"::None;        
+    end;
+    // << AMC-135
     var
         Text001 : Label '%1 is %2 and %3 is %4 on item %5';
         Text002 : Label '%1 is greater than %2 on Prod. Order %3';
